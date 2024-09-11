@@ -1,25 +1,20 @@
 'use client';
-import React, { useState, useEffect, Suspense, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import productImage from '../../public/images/product-image.webp';
 import Link from 'next/link';
 import { FavoriteIcon } from './Icons/FavoriteIcon';
-import ModelRender from './ModelRender';
-import { Loader } from '@react-three/drei';
-import { colors } from '@/utils/colors';
-import { Canvas } from '@react-three/fiber';
+import ProductCard from './ProductCard';
+import { wishlistAtom } from '@/atoms/wishlist';
+import { useAtom } from 'jotai';
 
 const ProductList = () => {
   const [productListItem, setProductListItem] = useState([]);
-  const sections = ['hoodie', 'nikeShoe'];
-  const random = Math.floor(Math.random() * 2);
-
-  const [bodyColor, setBodyColor] = useState(colors[sections[random]][0]);
   const [activeProductId, setActiveProductId] = useState(null);
+  const [wishlist, setWishlist] = useAtom(wishlistAtom);
   const [viewMode, setViewMode] = useState('grid');
-  const [currentImageIndex, setCurrentImageIndex] = useState({});
-  const canvasRef = useRef();
 
+  console.log(wishlist, 'wishlist');
   useEffect(() => {
     fetch('http://51.20.115.140/api/getProducts')
       .then((response) => response.json())
@@ -29,8 +24,17 @@ const ProductList = () => {
       });
   }, []);
 
-  const handleProductClick = (productId) => {
-    setActiveProductId((prevId) => (prevId === productId ? null : productId));
+  const handleProductClick = (product) => {
+    setWishlist((prevProducts) => {
+      const exists = prevProducts.some((item) => item.productId === product.productId);
+      if (exists) {
+        // Remove the product if it's already in the wishlist
+        return prevProducts.filter((item) => item.productId !== product.productId);
+      } else {
+        // Add the product if it's not in the wishlist
+        return [...prevProducts, product];
+      }
+    });
   };
 
   const handleViewChange = (mode) => {
@@ -73,86 +77,24 @@ const ProductList = () => {
         </div>
       </div>
       <ul className="flex flex-wrap gap-[25px] productlist-container">
-        {productListItem?.data?.items.map((product) => {
-            let interval;
-          return (<>
+        {productListItem?.data?.items.map((product) => (
+          <>
             {viewMode === 'grid' && (
-              <li key={product.name} className="product-list-item bg-white">
-                <div className="border-2 border-zinc-50 rounded w-[298px] relative">
-                  <span
-                    onClick={() => handleProductClick(product.productId)}
-                    className={`absolute top-[10px] right-[6px] z-[9] inline-block w-[35px] h-[35px] favorite-icon cursor-pointer
-                    ${activeProductId === product.productId ? 'active' : ''}`}
-                  >
-                    <FavoriteIcon />
-                  </span>
-                  <div className="product-card p-[20px] relative">
-                    <Link href={`/${product?.productId}`}>
-                      <Image
-                        src={
-                          currentImageIndex?.[product.productId]
-                            ? product?.imageGallery?.[currentImageIndex[product.productId]]
-                            : product?.thumbnail
-                        }
-                        onMouseEnter={() => {
-                        
-                          if (product?.imageGallery?.length > 1) {
-                            interval = setInterval(() => {
-                              setCurrentImageIndex((prevIndex) => {
-                                return {
-                                  ...prevIndex,
-                                  [product.productId]:
-                                    ((prevIndex[product.productId] || 0) + 1) % product?.imageGallery?.length,
-                                };
-                              });
-                            }, 1500); // Change image every 1 second (adjust as needed)
-                          }
-                          return () => clearInterval(interval);
-                        }}
-                        onMouseLeave={() => {
-                          setCurrentImageIndex((prevIndex) => {
-                            return {
-                              ...prevIndex,
-                              [product.productId]: null,
-                            };
-                          });
-                        }}
-                        alt={product.name}
-                        width={225}
-                        height={225}
-                        className="w-full h-[220px]"
-                      />
-                      {/* <Suspense fallback={<Loader />}>
-                <Canvas
-                  dpr={[1, 2]}
-                  resize={{ scroll: false }}
-                  //   width={window.innerWidth}
-                  //   height={window.innerHeight}
-                  ref={canvasRef}
-                >
-                  <ModelRender color={bodyColor} random={random} />
-                </Canvas>
-              </Suspense> */}
-                    </Link>
-                  </div>
-                  <div className="pt-0 p-[20px]">
-                    <Link href={`/${product?.productId}`}>
-                      <h4 className="h-[48px] product-name text-[15px] text-gray-800 font-semibold">{product.name}</h4>
-                    </Link>
-                    <p className="font-semibold text-[14px]">{product.price}</p>
-                  </div>
-                </div>
-              </li>
+              <ProductCard
+                product={product}
+                activeProductId={wishlist}
+                handleProductClick={handleProductClick}
+              />
             )}
             {viewMode === 'list' && (
               <li key={product.name} className="product-list-item bg-white w-full">
                 <div className="border-2 border-zinc-50 rounded relative flex">
                   <span
-                    onClick={() => handleProductClick(product.productId)}
+                    onClick={() => handleProductClick(product)}
                     className={`absolute top-[10px] right-[6px] z-[9] inline-block w-[35px] h-[35px] favorite-icon cursor-pointer
-                    ${activeProductId === product.productId ? 'active' : ''}`}
+                    ${wishlist.includes(product.productId) ? 'active' : ''}`}
                   >
-                    <FavoriteIcon />
+                    <FavoriteIcon  />
                   </span>
                   <div className="product-card p-[20px] relative w-[30%]">
                     <Link href={`/${product?.productId}`}>
@@ -174,8 +116,8 @@ const ProductList = () => {
                 </div>
               </li>
             )}
-          </>)
-})}
+          </>
+        ))}
       </ul>
     </>
   );

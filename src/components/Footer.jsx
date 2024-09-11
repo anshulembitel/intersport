@@ -62,7 +62,7 @@ const heartSportLinks = () => {
 };
 const Footer = () => {
   return (
-    <footer className="footer py-[30px] bg-white text-gray-600">
+    <footer className="footer py-[30px] bg-white text-gray-600 shadow-lg">
       <div className="footer__content xl:container mx-auto">
         <div className="flex justify-between">
           <div>

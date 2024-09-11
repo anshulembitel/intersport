@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import FloatingButton from '@/components/FloatingButton';
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header />
-        {children}
+        <div className="shadow-lg">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

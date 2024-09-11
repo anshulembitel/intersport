@@ -6,7 +6,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="py-[15px]">
+    <header className="py-[15px]  shadow-xl">
       <div className="xl:container mx-auto flex justify-between items-center">
         <div className="logo content-center">
           <Link href='/'>
@@ -55,7 +55,7 @@ const Header = () => {
             </svg>
           </div>
           <div className="content-center ml-[20px]">
-            <FontAwesomeIcon icon={faListCheck} className="text-primaryColor dark:text-white" />
+            <FontAwesomeIcon icon={faListCheck} className="text-primaryColor dark:text-white inline-block" width={24} height={24} />
           </div>
         </div>
       </div>

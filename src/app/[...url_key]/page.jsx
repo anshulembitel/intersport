@@ -1,5 +1,6 @@
 import axios from 'axios';
 import ProductDetail from '@/components/ProductDetail/ProductDetail';
+import FloatingButton from '@/components/FloatingButton';
 
 const api = axios.create({
   baseURL: 'http://51.20.115.140/api',
@@ -24,6 +25,7 @@ export default async function ProductPage({ params }) {
       <div className="container">
         <ProductDetail catdataSSR={product} random={random} />
       </div>
+      <FloatingButton />
     </div>
   );
 }
