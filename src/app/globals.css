@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+}
+a {
+  transition: all 0.5s ease;
+}
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.product-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+.btn-hover:hover {
+  background: #164196;
+  color: #fff;
+}
+.btn-hover:hover svg {
+  color: #fff;
+}
+.footer__content a:hover {
+  color: #164196;
+  text-decoration: underline;
+}
+.product-list-item:hover > div {
+  border: 2px solid #164196;
+}
+.product-list-item:hover .product-name > a,
+.product-list-item:hover .product-price {
+  color: #164196;
+}
+.filter__content__item ul li {
+  padding: 5px 0;
+}
+.filter__content__item ul li a,
+.filter__content__item ul li a label {
+  cursor: pointer;
+}
+.filter__content__item ul li:hover {
+  color: #164196;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.filter__content__item {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+.filter__content__item input {
+  margin-right: 5px;
+}
+.laber_total_items{
+  background-color: #e5e5e5;
+  height: 5px;
+  position: relative;
+  width: 60%;
+  margin: 5px 0 25px 0;
+}   
+.laber_progress{
+  background-color: #333333;
+  width: 30.0%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 3px;
+}
+.favorite-icon.active svg path{
+  fill: #164196;
+  stroke: #164196;
+}
