@@ -30,7 +30,7 @@ const ModelRender = (props) => {
       <color attach="background" args={['#272727']} />
       {/* <ambientLight color="red" intensity={1} /> */}
       {/* <AdidasShoe /> */}
-      {props.random ? <Hoodie {...props} /> : <Nike {...props} />}
+      {props.random ? <Nike {...props} /> : <Nike {...props} />}
       {/* <DualColorTShirt /> */}
       {/* <Floor /> */}
       <spotLight ref={spotLight} position={[0, 7, 0]} intensity={1} distance={5} />

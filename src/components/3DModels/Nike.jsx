@@ -7,7 +7,7 @@ export function Nike(props) {
   materials['NikeShoe'].color = convertColor(props.color);
 
   return (
-    <group {...props} dispose={null} scale={3}>
+    <group {...props} dispose={null} scale={3} rotation={[0,90,0]}>
       <mesh castShadow receiveShadow geometry={nodes.defaultMaterial.geometry} material={materials.NikeShoe} />
     </group>
   );
