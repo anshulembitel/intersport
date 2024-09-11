@@ -1,0 +1,16 @@
+{
+    "apps": [
+      {
+        "name": "nextjs-app",
+        "script": "npm",
+        "args": "start",
+        "cwd": "/path/to/your/nextjs/project",
+        "instances": "max",
+        "exec_mode": "cluster",
+        "watch": false,
+        "env": {
+          "NODE_ENV": "production"
+        }
+      }
+    ]
+  }
