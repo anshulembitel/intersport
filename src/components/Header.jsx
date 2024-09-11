@@ -1,4 +1,4 @@
-import { faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { faListCheck, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ const Header = () => {
     <header className="py-[15px]  shadow-xl">
       <div className="xl:container mx-auto flex justify-between items-center">
         <div className="logo content-center">
-          <Link href='/'>
+          <Link href="/">
             <Image src="/images/logo.svg" width="150" height="60" alt="IINTERSPORT" />
           </Link>
         </div>
@@ -37,7 +37,7 @@ const Header = () => {
           </div>
           <div className="content-center ml-[20px]">
             <svg
-              className="w-8 h-8 text-primaryColor dark:text-white"
+              className="w-8 h-8 text-primaryColor"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -55,7 +55,10 @@ const Header = () => {
             </svg>
           </div>
           <div className="content-center ml-[20px]">
-            <FontAwesomeIcon icon={faListCheck} className="text-primaryColor dark:text-white inline-block" width={24} height={24} />
+            <FontAwesomeIcon icon={faListCheck} className="text-primaryColor text-2xl" />
+          </div>
+          <div className="content-center ml-[20px]">
+            <FontAwesomeIcon icon={faSignOutAlt} className="text-primaryColor text-2xl" />
           </div>
         </div>
       </div>
