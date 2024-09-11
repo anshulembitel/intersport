@@ -13,7 +13,7 @@ const FloatingButton = ({ onClick }) => {
         onClick={() => setVisible(true)}
         className="fixed bottom-4 right-4 bg-primaryColor text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition ease-in-out duration-300"
       >
-                    <FontAwesomeIcon icon={faListCheck} className="text-white dark:text-white inline-block" width={24} height={24} />
+                    <FontAwesomeIcon icon={faListCheck} className="text-white    dark:text-white inline-block" width={24} height={24} />
 
       </button>
         {visible && <OverlayList onClose={() => setVisible(false)} />}

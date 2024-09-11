@@ -51,7 +51,7 @@ const ProductCard = ({ product, activeProductId, handleProductClick }) => {
           <FavoriteIcon />
         </span>
         <div className="product-card p-[20px] relative" onClick={() => handleProductClickHandler()}>
-          <Link href={`/${product?.productId}`}>
+          <Link href={`/productlist/${product?.productId}`}>
             <Image
               src={product?.thumbnail}
               alt={product.name}
@@ -62,7 +62,7 @@ const ProductCard = ({ product, activeProductId, handleProductClick }) => {
           </Link>
         </div>
         <div className="pt-0 p-[20px]">
-          <Link href={`/${product?.productId}`}>
+          <Link href={`/productlist/${product?.productId}`}>
             <h4 className="h-[48px] product-name text-[15px] text-gray-700 font-semibold">{product.name}</h4>
           </Link>
           <p className="font-semibold text-[14px]">{product.price}</p>

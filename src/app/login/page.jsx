@@ -16,7 +16,8 @@ const LoginPage = () => {
     const validPassword = 'password'
 
     if (username === validUsername && password === validPassword) {
-      window.location.href = "/" // Redirect to a different page after login
+      document.cookie = "token=true" // Set a cookie to indicate that the user is logged in
+      window.location.href = "/" // Redirect to a different page after login using Next.js router
     } else {
       setError('Invalid credentials')
     }

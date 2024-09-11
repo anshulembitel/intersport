@@ -97,7 +97,7 @@ const ProductList = () => {
                     <FavoriteIcon  />
                   </span>
                   <div className="product-card p-[20px] relative w-[30%]">
-                    <Link href={`/${product?.productId}`}>
+                    <Link href={`/productlist/${product?.productId}`}>
                       <Image
                         src={product?.thumbnail}
                         alt={product.name}
@@ -108,7 +108,7 @@ const ProductList = () => {
                     </Link>
                   </div>
                   <div className="p-[20px] w-[70%]">
-                    <Link href={`/${product?.productId}`}>
+                    <Link href={`/productlist/${product?.productId}`}>
                       <h4 className="h-[48px] product-name text-[15px] text-gray-800 font-semibold">{product.name}</h4>
                     </Link>
                     <p className="font-semibold text-[14px]">{product.description}</p>
