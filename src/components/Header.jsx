@@ -1,3 +1,4 @@
+"use client"
 import { faListCheck, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
@@ -5,6 +6,10 @@ import Link from 'next/link';
 import React from 'react';
 
 const Header = () => {
+  const handleLogout=()=>{
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+      window.location.href = "/login"
+  }
   return (
     <header className="py-[15px]  shadow-xl">
       <div className="xl:container mx-auto flex justify-between items-center">
@@ -58,7 +63,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faListCheck} className="text-primaryColor text-2xl" />
           </div>
           <div className="content-center ml-[20px]">
-            <FontAwesomeIcon icon={faSignOutAlt} className="text-primaryColor text-2xl" />
+            <FontAwesomeIcon icon={faSignOutAlt} className="text-primaryColor text-2xl" onClick={()=>handleLogout()}/>
           </div>
         </div>
       </div>

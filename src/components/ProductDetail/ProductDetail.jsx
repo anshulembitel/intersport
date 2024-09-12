@@ -73,6 +73,7 @@ const ProductDetail = (props) => {
                 muted
                 playsInline
                 loop
+                autoPlay
               />
               </div>
             ) : show360 ? (
@@ -226,6 +227,10 @@ const ProductDetail = (props) => {
                 );
               })}
             </div>
+          </div>
+          <div className="my-[20px] text-[16px]">
+            <p className="text-[#33333]">Description:</p>
+            <span dangerouslySetInnerHTML={{__html:catdataSSR?.data?.description}}></span>
           </div>
         </div>
       </div>
