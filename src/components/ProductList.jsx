@@ -7,7 +7,7 @@ import { FavoriteIcon } from './Icons/FavoriteIcon';
 import ProductCard from './ProductCard';
 import { wishlistAtom } from '@/atoms/wishlist';
 import { useAtom } from 'jotai';
-
+import Promotions from './Promotions';
 const ProductList = () => {
   const [productListItem, setProductListItem] = useState([]);
   const [activeProductId, setActiveProductId] = useState(null);
@@ -80,11 +80,7 @@ const ProductList = () => {
         {productListItem?.data?.items.map((product) => (
           <>
             {viewMode === 'grid' && (
-              <ProductCard
-                product={product}
-                activeProductId={wishlist}
-                handleProductClick={handleProductClick}
-              />
+              <ProductCard product={product} activeProductId={wishlist} handleProductClick={handleProductClick} />
             )}
             {viewMode === 'list' && (
               <li key={product.name} className="product-list-item bg-white w-full">
@@ -94,7 +90,7 @@ const ProductList = () => {
                     className={`absolute top-[10px] right-[6px] z-[9] inline-block w-[35px] h-[35px] favorite-icon cursor-pointer
                     ${wishlist.includes(product.productId) ? 'active' : ''}`}
                   >
-                    <FavoriteIcon  />
+                    <FavoriteIcon />
                   </span>
                   <div className="product-card p-[20px] relative w-[30%]">
                     <Link href={`/productlist/${product?.productId}`}>
@@ -112,7 +108,30 @@ const ProductList = () => {
                       <h4 className="h-[48px] product-name text-[15px] text-gray-800 font-semibold">{product.name}</h4>
                     </Link>
                     <p className="font-semibold text-[14px]">
-                      <span dangerouslySetInnerHTML={{__html:product.description}}></span></p>
+                      <span dangerouslySetInnerHTML={{ __html: product.description }}></span>
+                    </p>
+                    {viewMode === 'list' && (
+                      <div className="flex flex-cols-2 gap-2  items-center mt-[10px]">
+                        <Promotions
+                          price={3134}
+                          originalPrice={3999}
+                          discount={21.63}
+                          currency="€"
+                          buttonColor="bg-blue-500"
+                          textColor="black"
+                          backgroundColor="bg-yellow-50"
+                        />
+                        <Promotions
+                          price={3134}
+                          originalPrice={3999}
+                          discount={21.63}
+                          currency="€"
+                          buttonColor="bg-blue-500"
+                          textColor="black"
+                          backgroundColor="bg-yellow-50"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </li>

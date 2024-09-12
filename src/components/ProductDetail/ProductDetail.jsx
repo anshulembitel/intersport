@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProgressBar from '@/components/ProgressBar';
 import ModelRender from '../ModelRender';
 import { colors } from '@/utils/colors';
+import Promotions from '../promotions';
 
 const ProductDetail = (props) => {
   const { catdataSSR, random } = props;
@@ -229,11 +230,32 @@ const ProductDetail = (props) => {
             </div>
           </div>
           <div className="my-[20px] text-[16px]">
-            <p className="text-[#33333]">Description:</p>
-            <span dangerouslySetInnerHTML={{__html:catdataSSR?.data?.description}}></span>
+            {/* <p className="text-[#33333]">Description:</p> */}
+            {/* <span dangerouslySetInnerHTML={{__html:catdataSSR?.data?.description}}></span> */}
+            <div className="flex flex-cols-2 gap-2  items-center mt-[10px]">
+              <Promotions
+                price={3134}
+                originalPrice={3999}
+                discount={21.63}
+                currency="€"
+                buttonColor="bg-blue-500"
+                textColor="black"
+                backgroundColor="bg-yellow-50"
+              />
+              <Promotions
+                price={3134}
+                originalPrice={3999}
+                discount={21.63}
+                currency="€"
+                buttonColor="bg-blue-500"
+                textColor="black"
+                backgroundColor="bg-yellow-50"
+              />
+            </div>
+          </div>
           </div>
         </div>
-      </div>
+      
 
       <div className="flex border-b border-gray-200">
         {tabs.map((tab) => (
